@@ -1,13 +1,20 @@
 const express = require('express');
 const cors = require('cors');
 const { sequelize } = require('./models');
+const authRoutes = require('./routes/authRoutes');
+const {verifyToken, authorizeRole} = require('./middlewares/authMiddleware');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/api/auth', authRoutes);
 app.get('/api/test',(req,res) =>{
     res.json({message: 'BE + PostgreSQL OK!!'});
+});
+// Endpoint contoh: hanya owner yang boleh akses
+app.get('/api/staf', verifyToken,authorizeRole['owner'],(req,res) =>{
+    res.json({message: `Halo ${req.user.nama}, kamu berhasil akses data staf sebagai ${req.user.role}`})
 });
 
 const PORT = process.env.PORT || 5000;
