@@ -19,8 +19,8 @@ function verifyToken(req,res,next){
 }
 
 function authorizeRole(allowedRoles){
-    return (req,req,next) =>{
-        if (!allowedRoles.includes(req,res,role)){
+    return (req,res,next) =>{
+        if (!allowedRoles.includes(req.user.role)){
             return res.status(403).json({message: 'Kamu tidak punya akses untuk fitur ini'})
         }
         next();

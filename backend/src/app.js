@@ -13,7 +13,7 @@ app.get('/api/test',(req,res) =>{
     res.json({message: 'BE + PostgreSQL OK!!'});
 });
 // Endpoint contoh: hanya owner yang boleh akses
-app.get('/api/staf', verifyToken,authorizeRole['owner'],(req,res) =>{
+app.get('/api/staf', verifyToken,authorizeRole(['owner']),(req,res) =>{
     res.json({message: `Halo ${req.user.nama}, kamu berhasil akses data staf sebagai ${req.user.role}`})
 });
 
