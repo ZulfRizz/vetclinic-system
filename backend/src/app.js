@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.get('api/test',(req,res) =>{
+app.get('/api/test',(req,res) =>{
     res.json({message: 'BE + PostgreSQL OK!!'});
 });
 
