@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const {verifyToken, authorizeRole} = require('./middlewares/authMiddleware');
 const pasienRoutes = require('./routes/pasienRoutes');
 const rekamMedisRoutes = require('./routes/rekamMedisRoutes')
+const pemilikRoutes = require('./routes/pemilikRoutes');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/pasien',pasienRoutes);
 app.use('/api/rekam-medis',rekamMedisRoutes);
+app.use('/api/pemilik',pemilikRoutes);
 app.get('/api/test',(req,res) =>{
     res.json({message: 'BE + PostgreSQL OK!!'});
 });
